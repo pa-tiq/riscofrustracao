@@ -1,0 +1,39 @@
+.page-table .table {
+    margin: 0;
+}
+
+.page-table .table th, 
+.page-table .table td {
+    text-align: center;
+    width: unset !important;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    padding: 8px 14px;
+}
+
+.page-table .table th {
+    padding: 8px 14px;
+}
+
+.page-table .table .table-actions {
+    width: unset;
+}
+
+.page-table .page-form .box-body {
+    padding: 0 0 5px;
+}
+
+.page-table .page-form .box-footer {
+    padding: 10px 0 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.page-table .page-form .box-footer button {
+    margin: 0;
+}
+
+.page-table .page-form .box-footer button:not(:last-child) {
+    margin-right: 10px;
+}

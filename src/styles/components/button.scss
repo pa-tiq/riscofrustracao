@@ -1,0 +1,23 @@
+.btn {
+	border-radius: $border-radius !important;
+	font-weight: 600;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&:not(.btn-sm) {
+		height: 40px;
+		padding: 0 $spacement-2;
+	}
+}
+
+.btn-primary {
+	background-color: var(--color-primary) !important;
+	border-color: var(--color-primary) !important;
+	transition: opacity 0.4s ease;
+
+	&:hover, &:active {
+		opacity: 0.8;
+	}
+}

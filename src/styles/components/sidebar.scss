@@ -1,0 +1,152 @@
+$sidebar-item-height: 44px;
+$sidebar-item-width: 200px;
+$sidebar-icon-width: 50px;
+$sidebar-item-border-width: 5px;
+
+.main-sidebar {
+	background-color: var(--color-primary);
+
+	.logo {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: $spacement-2 0;
+		
+		img {
+			width: 60%;
+		}
+	}
+
+	.sidebar-menu {
+
+		li {
+
+			a {
+				font-weight: 600;
+				color: #fff;
+				border-left: $sidebar-item-border-width solid transparent;
+				display: flex;
+				align-items: center;
+				height: $sidebar-item-height;
+				transition: background 0.4s ease;
+				cursor: pointer;
+				padding: 0;
+				font-size: 12px;
+
+				i:not(.pull-right) {
+					width: $sidebar-icon-width !important;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					&::before {
+						margin-left: -5px;
+					}
+				}
+
+				.pull-right {
+					margin-left: auto;
+					padding-right: $spacement-1;
+				}
+
+				span {
+					border-top-right-radius: $border-radius;
+					border-bottom-right-radius: $border-radius;
+				}
+			}
+
+			&:hover, &.active {
+
+				a {
+					background: var(--color-primary-shade);
+					border-left-color: rgba(0, 0, 0, 0.5);
+				}
+			}
+
+			&.treeview {
+
+				> a > span {
+					border-bottom-right-radius: 0;
+				}
+
+				.treeview-menu {
+					margin: 0;
+					padding: 0;
+	
+					li {
+	
+						a {
+							background: var(--color-primary-tint);
+						}
+	
+						&:hover, &.active {
+	
+							a {
+								background: var(--color-primary-shade);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right) {
+	width: auto;
+	height: $sidebar-item-height;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: flex !important;
+	padding: 0 2rem;
+	left: calc(#{$sidebar-icon-width} - 2px);
+}
+
+.sidebar-collapse {
+	
+	.sidebar-menu {
+
+		> li > a {
+			padding: 0;
+			justify-content: center;
+		}
+
+		> li.treeview:hover {
+	
+			> a > span:not(.pull-right) {
+				width: $sidebar-item-width;
+			}
+	
+			.treeview-menu {
+				width: $sidebar-item-width;
+				padding: 0;
+				border-bottom-right-radius: $border-radius;
+				overflow: hidden;
+	
+				li a {
+					padding: 0;
+					height: $sidebar-item-height;
+					border: none;
+				}
+			}
+		}
+	}
+
+	.main-sidebar {
+
+		.logo {
+			display: none;
+		}
+	}
+}
+
+.main-sidebar, .left-side,
+.main-header .logo {
+	width: $sidebar-width;
+}
+
+.content-wrapper, .right-side, .main-footer,
+.main-header .navbar {
+	margin-left: $sidebar-width;
+}

@@ -1,0 +1,36 @@
+.nav-tabs-custom {
+	margin-bottom: $spacement-2;
+    box-shadow: none;
+    border-radius: unset;
+	margin: 0;
+
+	.tab-content {
+		padding: 0;
+		background: none;
+	}
+}
+
+.nav-tabs {
+	border-radius: unset;
+	border: none;
+	display: flex;
+
+	li {
+		border: none !important;
+		margin: 0 $spacement-1 $spacement-1 0 !important;
+
+		a {
+			border: none !important;
+			background-color: var(--color-gray) !important;
+			border-radius: $border-radius !important;
+		}
+
+		&.active {
+
+			a {
+				background-color: var(--color-primary) !important;
+				color: #fff !important;
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+#page-login {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.login-content {
+		width: 360px;
+
+		.login-header {
+			.login-header-text {
+				text-align: center;
+				font-size: 30px;
+			}
+		}
+
+		.login-box {
+			margin-top: $spacement-2;
+			width: 100%;
+			background-color: var(--color-gray);
+			border-radius: $border-radius;
+			padding: $spacement-3;
+		}
+	}
+}

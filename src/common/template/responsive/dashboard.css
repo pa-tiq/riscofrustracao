@@ -1,0 +1,69 @@
+.page-dashboard2 {
+    position: relative;
+}
+
+.page-dashboard2 .dashboard-header {
+    margin-bottom: 40px;
+}
+
+.page-dashboard2 .dashboard-header button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.page-dashboard2 .dashboard-header .row {
+}
+
+.page-dashboard2 .charts-wrapper-2 {
+    margin-top: 20px;
+}
+
+.page-dashboard2 .charts-wrapper-2 .data-group .item {
+    margin-top: 10px;
+}
+
+/* DESKTOP */
+@media (min-width: 992px) {
+
+    .page-dashboard2 .dashboard-header {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
+
+    .page-dashboard2 .dashboard-header .row {
+        flex-grow: 1;
+    }
+
+    .page-dashboard2 .dashboard-header button {
+        margin-left: 20px;
+    }
+}
+
+/* TABLET */
+@media (max-width: 991px) {
+
+    .page-dashboard2 .dashboard-header .row .item {
+        margin-top: 10px;
+    }
+
+    .page-dashboard2 .charts-wrapper-1 .charts-row-2 {
+        margin-top: 20px;
+    }
+
+    .page-dashboard2 .charts-wrapper-2 .data-group .item {
+        margin-top: 10px;
+    }
+    
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+
+    .page-dashboard2 .dashboard-header {
+        margin-bottom: 10px;
+    }
+    
+
+}

@@ -1,0 +1,60 @@
+// SITE PARA CALCULAR shade e tint DAS CORES
+// https://maketintsandshades.com/
+
+:root {
+	--color-primary: #325fdf;
+	--color-primary-shade: #23439c;
+	--color-primary-tint: #708fe9;
+	--color-gray: #eee;
+	--color-black: #333;
+}
+
+/* AO MUDAR AS CORES AQUI LEMBRE-SE DE ALTERAR EM [index.html] TAMBÉM! */
+#app > .wrapper {
+
+	/* REGIUS */
+	&[data-cliente="regius"] {
+		--color-primary: #9DA348;
+		--color-primary-shade: #6e7232;
+		--color-primary-tint: #babf7f;
+	}
+	/* EQUATORIAL */
+	&[data-cliente="eqt"] {
+		--color-primary: #05659c;
+		--color-primary-shade: #04476d;
+		--color-primary-tint: #5093ba;
+	}
+
+	/* SARAH PREVIDENCIA */
+	&[data-cliente="sarah"] {
+		--color-primary: #364188;
+		--color-primary-shade: #F07D00;
+		--color-primary-tint: #727aac;
+	}
+	
+	/* SANEAGO - PREVISAN */
+	&[data-cliente="previsan"] {
+		--color-primary: #05659c;
+		--color-primary-shade: #04476d;
+		--color-primary-tint: #5093ba;
+	}	
+
+	/* RISCO */
+	&[data-cliente="risco"] {
+		--color-primary: #05659c;
+		--color-primary-shade: #04476d;
+		--color-primary-tint: #5093ba;
+	}	
+
+}
+
+$spacement-1: 1rem;
+$spacement-2: 2rem;
+$spacement-3: 3rem;
+$spacement-half: calc(#{$spacement-1} / 2);
+
+$border-radius: 6px;
+
+$sidebar-width: 250px;
+$header-height: 50px;
+$header-bg-color: var(--color-primary-shade);

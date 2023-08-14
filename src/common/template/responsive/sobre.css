@@ -1,0 +1,9 @@
+.page.page-sobre {
+    background: #fff;
+    padding: 20px 20px 71px;
+}
+
+.page.page-sobre .content-header,
+.page.page-sobre .content {
+    padding: 0;
+}
