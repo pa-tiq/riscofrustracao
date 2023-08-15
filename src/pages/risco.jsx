@@ -83,13 +83,13 @@ function fecthSimulacaoRiscoFrustracao(
   sendmail
 ) {
   if (apikey.length != 0) {
-    return axios
-      .get(
-        `${BASE_URL}/modelia/riscofrustracao/${cliente}/${usuario}/${nome}/${email}/${celular}/${apikey}/${versao}/${salario}/${saldototal}/${idadeatualmeses}/${contribuicaomensal}/${sendmail}`
-      )
-      .then((resp) => {
-        return resp.data;
-      });
+    // return axios
+    //   .get(
+    //     `${BASE_URL}/modelia/riscofrustracao/${cliente}/${usuario}/${nome}/${email}/${celular}/${apikey}/${versao}/${salario}/${saldototal}/${idadeatualmeses}/${contribuicaomensal}/${sendmail}`
+    //   )
+    //   .then((resp) => {
+    //     return resp.data;
+    //   });
   }
 }
 /*
@@ -559,7 +559,7 @@ export default class Risco extends Component {
                       this.state.probRiscoBaixo,
                       this.state.probSemRisco,
                     ]}
-                    color={getChartColors()}
+                    //color={getChartColors()}
                     onClickChartIndex={(index) => {
                       //console.log(index)
                     }}

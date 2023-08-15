@@ -6,9 +6,9 @@ import Footer from './common/template/footer';
 import Messages from './common/msg/messages';
 
 const App = () => (
-  <div className='wrapper' data-cliente={"teste"}>
+  <div className='wrapper' data-cliente={"cliente-teste"}>
     <Header />
-    <SideBar user={props.user} />
+    <SideBar user={"usuario-teste"} />
     <div className='content-wrapper'>
       <Routes />
     </div>
@@ -16,4 +16,5 @@ const App = () => (
     {/* <Messages /> */}
   </div>
 );
+
 export default App;
