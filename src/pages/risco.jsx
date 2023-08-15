@@ -10,7 +10,7 @@ import ItemValue from '../common/widget/itemvalue';
 //import LabelAndInputAndControl from '../common/form/labelAndInputAndControl'
 import LabelAndInput from '../common/form/labelAndInput';
 
-import axios from 'axios';
+//import axios from 'axios';
 import PieChart from '../common/template/piechart';
 //import BarChart from '../common/template/barchart'
 import LineChart from '../common/template/linechart';
