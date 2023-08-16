@@ -1,9 +1,18 @@
-const MenuItem = (props) => {
+import { Link } from "react-router-dom";
+
+const MenuItem = ({path, icon, label}) => {
+  // return (
+  //   <li>
+  //     <a href={path}>
+  //       <i className={`fa fa-${icon}`}></i> <span>{label}</span>
+  //     </a>
+  //   </li>
+  // );  
   return (
     <li>
-      <a href={props.path}>
-        <i className={`fa fa-${props.icon}`}></i> <span>{props.label}</span>
-      </a>
+      <Link to={path}>
+        <i className={`fa fa-${icon}`}></i> <span>{label}</span>
+      </Link>
     </li>
   );
 };

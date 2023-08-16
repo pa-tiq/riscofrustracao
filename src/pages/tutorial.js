@@ -5,7 +5,7 @@ import Row from '../common/layout/row'
 
 //https://www.youtube.com/watch?v=X2H-PMFht6I
 
-import Logo from '../imgs/wedan-black.svg'
+import Logo from '../assets/imgs/wedan-black.svg'
 import VideoPlayer from '../common/video/videoplayer'
 
 const Tutorial = () => {

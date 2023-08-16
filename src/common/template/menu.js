@@ -23,18 +23,18 @@ const Menu = () => {
       {<Logo logoName={cliente}></Logo>}
 
       <ul className='sidebar-menu'>
-        <MenuItem path='#risco' label='Risco' icon='dashboard' />
+        <MenuItem path='/risco' label='Risco' icon='dashboard' />
         {/* <MenuItem path='#deducaorenda' label='Dedução de Imposto de Renda' icon='address-book' />  */}
         <MenuItem
-          path='#tutorial'
+          path='/tutorial'
           label='Tutorial'
           icon='caret-square-o-right'
         />
-        <MenuItem path='#sobre' label='Sobre' icon='address-card' />
+        <MenuItem path='/sobre' label='Sobre' icon='address-card' />
       </ul>
 
       <div className='logo'>
-        <img src={require('../../imgs/wedan_vertical.png')} />
+        <img src={require('../../assets/imgs/wedan_vertical.png')} />
       </div>
     </div>
   );

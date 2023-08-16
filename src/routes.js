@@ -10,14 +10,52 @@ import 'react-router-dom';
 //import Risco from './pages/risco';
 import Tutorial from './pages/tutorial';
 import Sobre from './pages/sobre';
+import SideBar from './common/template/sideBar';
+
+const Page = ({children}) => {
+  return (
+    <>
+      <SideBar />
+      {children}
+    </>
+  );
+};
 
 const Routes = () => (
   <BrowserRouter>
     <BrowserRoutes>
-      <Route path='/' element={<Sobre />} />
-      <Route path='/signup' element={<Tutorial />} />
-      <Route path='/cards' element={<Sobre />} />
-      <Route path='*' element={<Sobre />} />
+      <Route
+        path='/'
+        element={
+          <Page>
+            <Sobre />
+          </Page>
+        }
+      />
+      <Route
+        path='/tutorial'
+        element={
+          <Page>
+            <Tutorial />
+          </Page>
+        }
+      />
+      <Route
+        path='/sobre'
+        element={
+          <Page>
+            <Sobre />
+          </Page>
+        }
+      />
+      <Route
+        path='*'
+        element={
+          <Page>
+            <Sobre />
+          </Page>
+        }
+      />
     </BrowserRoutes>
   </BrowserRouter>
 );
