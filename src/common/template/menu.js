@@ -1,7 +1,9 @@
-import React from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import MenuItem from './menuItem';
 import Logo from './logo';
-import MenuTree from './menuTree';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMenuState, toggleMenu } from '../../redux/menuOpenSlice';
+import { useCookies } from 'react-cookie';
 
 // Constant to define the position of menu, in accord with id of table menu in database
 
@@ -18,6 +20,24 @@ const Menu = () => {
     //cliente = 5 - saneago
     cliente = 'risco';
   }
+
+  const [cookie, setCookie] = useCookies(['menuWide']);
+  const { menuWide } = cookie;
+  //const { menuOpen:toggled } = useSelector(state => state.menu);
+  const toggled = useSelector(selectMenuState);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setCookie('menuWide', toggled, { path: '/', sameSite: 'lax' });
+  }, [toggled]);
+
+  useLayoutEffect(() => {
+    if (toggled !== undefined && `${toggled}` !== menuWide) {
+      dispatch(toggleMenu());
+    }
+  }, [menuWide]);
+
   return (
     <div>
       {<Logo logoName={cliente}></Logo>}
@@ -32,6 +52,19 @@ const Menu = () => {
         />
         <MenuItem path='/sobre' label='Sobre' icon='address-card' />
       </ul>
+
+      <div className='text-center d-none d-md-inline'>
+        <button
+          onClick={() => {
+            dispatch(toggleMenu());
+          }}
+          className='sidebar-toggle rounded-circle border-0'
+          data-toggle='offcanvas'
+          id='sidebarToggle'
+        ></button>
+      </div>
+
+      <a className='sidebar-toggle' data-toggle='offcanvas'></a>
 
       <div className='logo'>
         <img src={require('../../assets/imgs/wedan_vertical.png')} />
