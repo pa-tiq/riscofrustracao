@@ -23,7 +23,6 @@ const Menu = () => {
 
   const [cookie, setCookie] = useCookies(['menuWide']);
   const { menuWide } = cookie;
-  //const { menuOpen:toggled } = useSelector(state => state.menu);
   const toggled = useSelector(selectMenuState);
 
   const dispatch = useDispatch();
@@ -63,8 +62,6 @@ const Menu = () => {
           id='sidebarToggle'
         ></button>
       </div>
-
-      <a className='sidebar-toggle' data-toggle='offcanvas'></a>
 
       <div className='logo'>
         <img src={require('../../assets/imgs/wedan_vertical.png')} />

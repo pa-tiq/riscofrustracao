@@ -6,6 +6,11 @@ import {
 } from 'react-router-dom';
 import 'react-router-dom';
 
+// import { useEffect, useLayoutEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectMenuState, toggleMenu } from './redux/menuOpenSlice';
+import { useCookies } from 'react-cookie';
+
 //Pages
 //import Risco from './pages/risco';
 import Tutorial from './pages/tutorial';
@@ -13,11 +18,23 @@ import Sobre from './pages/sobre';
 import SideBar from './common/template/sideBar';
 
 const Page = ({children}) => {
+
+  const [cookie] = useCookies(['menuWide']);
+  const { menuWide } = cookie;
+
   return (
-    <>
-      <SideBar />
-      {children}
-    </>
+    <div
+      className={
+        menuWide === 'false'
+          ? 'fixed sidebar-mini sidebar-collapse'
+          : 'fixed sidebar-mini'
+      }
+    >
+      <div className='wrapper'>
+        <SideBar />
+        {children}
+      </div>
+    </div>
   );
 };
 

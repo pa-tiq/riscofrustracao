@@ -6,7 +6,7 @@ export const slice = createSlice({
     menuOpen: true,
   },
   reducers: {
-    toggleMenu(state, { payload }) {
+    toggleMenu(state) {
       return {
         menuOpen: !state.menuOpen,
       };
