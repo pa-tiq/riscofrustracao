@@ -11,9 +11,9 @@ import ItemValue from '../common/widget/itemvalue';
 import LabelAndInput from '../common/form/labelAndInput';
 
 //import axios from 'axios';
-import PieChart from '../common/template/piechart';
+import PieChart from '../common/template/piechart2';
 //import BarChart from '../common/template/barchart'
-import LineChart from '../common/template/linechart';
+//import LineChart from '../common/template/linechart';
 
 import SliderOne from '../common/template/sliderOne';
 import Tooltip from '../common/template/tooltip';
@@ -201,7 +201,8 @@ export default class Risco extends Component {
       //     })
       //     .catch((err) => console.log('Error in fecthSimulacaoRiscoFrustracao..', err))
 
-      this.setState(...this.state, {
+      this.setState((prevState) => ({
+        ...prevState,
         found: true,
         classe: 'oi',
         label: 'testte',
@@ -209,7 +210,7 @@ export default class Risco extends Component {
         probRiscoMedio: (20.5).toFixed(2),
         probRiscoBaixo: (11.0).toFixed(2),
         probSemRisco: (5.0).toFixed(2),
-      });
+      }));
     }
   }
 
@@ -236,7 +237,8 @@ export default class Risco extends Component {
   }
 
   clearDataState() {
-    this.setState(...this.state, {
+    this.setState((prevState) => ({
+      ...prevState,
       found: false,
       classe: '',
       label: '',
@@ -244,7 +246,7 @@ export default class Risco extends Component {
       probRiscoMedio: 0,
       probRiscoBaixo: 0,
       probSemRisco: 0,
-    });
+    }));
   }
 
   clearAllState() {
@@ -559,13 +561,6 @@ export default class Risco extends Component {
                       this.state.probRiscoBaixo,
                       this.state.probSemRisco,
                     ]}
-                    //color={getChartColors()}
-                    onClickChartIndex={(index) => {
-                      //console.log(index)
-                    }}
-                    onClickChartLabel={(index) => {
-                      // console.log(index)
-                    }}
                   />
                 </div>
               </div>

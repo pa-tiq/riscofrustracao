@@ -32,11 +32,7 @@ const Menu = () => {
 
   let firstTime = true;
   useLayoutEffect(() => {
-    if (
-      menuWide &&
-      `${menuWide}` !== menuWideCookie &&
-      firstTime
-    ) {
+    if (menuWide && `${menuWide}` !== menuWideCookie && firstTime) {
       dispatch(toggleMenu());
     }
     firstTime = false;

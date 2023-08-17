@@ -7,7 +7,7 @@ import {
 import 'react-router-dom';
 
 //Pages
-//import Risco from './pages/risco';
+import Risco from './pages/risco';
 import Tutorial from './pages/tutorial';
 import Sobre from './pages/sobre';
 import SideBar from './common/template/sideBar';
@@ -45,6 +45,14 @@ const Routes = () => (
         element={
           <Page>
             <Sobre />
+          </Page>
+        }
+      />      
+      <Route
+        path='/risco'
+        element={
+          <Page>
+            <Risco />
           </Page>
         }
       />

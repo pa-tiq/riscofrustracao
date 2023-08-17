@@ -24,7 +24,6 @@ const App = () => {
         <div className='content-wrapper'>
           <Routes />
         </div>
-
         <Footer />
         {/* <Messages /> */}
       </div>
