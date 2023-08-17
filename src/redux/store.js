@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import menuOpenReducer from './menuOpenSlice';
+import menuWideReducer from './menuWideSlice';
 
 export default configureStore({
   reducer: {
-    menu: menuOpenReducer,
+    menu: menuWideReducer,
   },
 });

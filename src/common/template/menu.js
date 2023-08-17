@@ -1,8 +1,8 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import MenuItem from './menuItem';
 import Logo from './logo';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMenuState, toggleMenu } from '../../redux/menuOpenSlice';
+import { toggleMenu } from '../../redux/menuWideSlice';
 import { useCookies } from 'react-cookie';
 
 // Constant to define the position of menu, in accord with id of table menu in database
@@ -21,21 +21,26 @@ const Menu = () => {
     cliente = 'risco';
   }
 
-  const [cookie, setCookie] = useCookies(['menuWide']);
-  const { menuWide } = cookie;
-  const toggled = useSelector(selectMenuState);
-
+  const [cookie, setCookie] = useCookies(['menuWideCookie']);
+  const { menuWideCookie } = cookie;
+  const menuWide = useSelector((state) => state.menu.menuWide);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCookie('menuWide', toggled, { path: '/', sameSite: 'lax' });
-  }, [toggled]);
+    setCookie('menuWideCookie', menuWide, { path: '/', sameSite: 'lax' });
+  }, [menuWide]);
 
+  let firstTime = true;
   useLayoutEffect(() => {
-    if (toggled !== undefined && `${toggled}` !== menuWide) {
+    if (
+      menuWide &&
+      `${menuWide}` !== menuWideCookie &&
+      firstTime
+    ) {
       dispatch(toggleMenu());
     }
-  }, [menuWide]);
+    firstTime = false;
+  }, [menuWideCookie]);
 
   return (
     <div>
@@ -52,16 +57,17 @@ const Menu = () => {
         <MenuItem path='/sobre' label='Sobre' icon='address-card' />
       </ul>
 
-      <div className='text-center d-none d-md-inline'>
-        <button
+      <ul className='sidebar-menu'>
+        <li
           onClick={() => {
             dispatch(toggleMenu());
           }}
-          className='sidebar-toggle rounded-circle border-0'
-          data-toggle='offcanvas'
-          id='sidebarToggle'
-        ></button>
-      </div>
+        >
+          <a className='navbar navbar-static-top'>
+            <i className={`fa fa-caret-square-o-right`}></i>
+          </a>
+        </li>
+      </ul>
 
       <div className='logo'>
         <img src={require('../../assets/imgs/wedan_vertical.png')} />

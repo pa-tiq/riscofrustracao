@@ -10,7 +10,7 @@ const Header = () => {
         </span>
       </a>
       <nav className='navbar navbar-static-top'>
-        <a href='#0' className='sidebar-toggle' data-toggle='offcanvas'></a>
+        {/* <a href='#0' className='sidebar-toggle' data-toggle='offcanvas'></a> */}
       </nav>
     </header>
   );
