@@ -5,7 +5,7 @@ import ContentHeader from '../common/template/contentHeader';
 import Content from '../common/template/content';
 
 import ItemValue from '../common/widget/itemvalue';
-//import ItemValueStyle from '../common/widget/itemvaluestyle'
+import ItemValueStyle from '../common/widget/itemvaluestyle';
 
 //import LabelAndInputAndControl from '../common/form/labelAndInputAndControl'
 import LabelAndInput from '../common/form/labelAndInput';
@@ -39,34 +39,61 @@ import { isDate, now } from 'lodash';
 
 import { getMsgToolTip } from '../common/functions/msgtooltips';
 
+import List from '../risco/faixariscoList';
+
 const BASE_URL = consts.OAPI_URL;
 
-const asEvolucaoBeneficioEstimadoInitState = {
-  labels: [],
-  datasets: [
+const columnsInitState = [
+  {
+    label: 'Faixa Salarial',
+    field: '_faixa_salarial',
+    sort: 'asc',
+    width: 150,
+  },
+  {
+    label: 'Parâmetro s/ salario',
+    field: '_parametro_s_salario',
+    sort: 'asc',
+    width: 150,
+  },
+  {
+    label: 'Alto Risco (menor que)',
+    field: '_altorisco_menor_que',
+    sort: 'asc',
+    width: 150,
+  },
+  {
+    label: 'Medio Risco (entre)',
+    field: '_medio_risco_entre',
+    sort: 'asc',
+    width: 150,
+  },
+  {
+    label: 'Baixo Risco (entre)',
+    field: '_baixo_risco_entre',
+    sort: 'asc',
+    width: 150,
+  },
+];
+
+const dataInitState = {
+  data: [
     {
-      label: '',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: '#90caf9',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [],
+      columns: columnsInitState,
+      rows: [],
     },
   ],
 };
+
+function fecthFaixasRiscoFrustracao(plano) {
+  if (plano.length != 0) {
+    return axios
+      .get(`${BASE_URL}/analisesestrategicas/faixariscofrustracao/${plano}`)
+      .then((resp) => {
+        return resp.data;
+      });
+  }
+}
 
 function fecthSimulacaoRiscoFrustracao(
   cliente,
@@ -92,6 +119,7 @@ function fecthSimulacaoRiscoFrustracao(
       });
   }
 }
+
 /*
             nome: 'thyago marques',
             email: 'thyago@gmail.com',
@@ -109,8 +137,10 @@ export default class Risco extends Component {
     this.state = {
       found: false,
       checked: false,
-      cliente: 5, //Codigo da CLIENTE RM
+
+      cliente: 2, //Codigo da CLIENTE WTI
       usuario: 8, //Código do usuario do participante individual para os planos
+      plano: 4,
 
       nome: 'WTI',
       email: 'contato@wti.com.br',
@@ -143,11 +173,14 @@ export default class Risco extends Component {
       probRiscoMedio: 0,
       probRiscoBaixo: 0,
       probSemRisco: 0,
+
+      data: dataInitState,
     };
     this.clearAllState = this.clearAllState.bind(this);
     this.clearDataState = this.clearDataState.bind(this);
     this.simulate = this.simulate.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+    this.loadInitialParams = this.loadInitialParams.bind(this);
   }
 
   handleCheck(e) {
@@ -155,6 +188,29 @@ export default class Risco extends Component {
     this.setState({
       checked: e.target.checked,
     });
+  }
+
+  loadInitialParams() {
+    const { plano } = this.state;
+
+    if (plano > 0) {
+      fecthFaixasRiscoFrustracao(plano)
+        .then((dataset) => {
+          //console.log(dataset)
+          if (!!dataset) {
+            this.setState(...this.state, {
+              data: {
+                rows: dataset,
+              },
+            });
+          } else {
+            this.setState(...this.state, { data: dataInitState });
+          }
+        })
+        .catch((err) =>
+          console.log('Error in fecthFaixasRiscoFrustracao..', err)
+        );
+    }
   }
 
   simulate() {
@@ -181,35 +237,40 @@ export default class Risco extends Component {
       parseFloat(contribuicaomensal) > 0
     ) {
       //Fetch data to Beneficiario
-      // fecthSimulacaoRiscoFrustracao(cliente, usuario, nome, email, celular, apikey, versao, salario, saldototal, (idadeatualanos * 12), contribuicaomensal, sendmail)
-      //     .then(bc => {
-      //         if (!!bc) {
-      //             //console.log(bc)
-      //             this.setState(...this.state, {
-      //                 found: true,
-      //                 classe: bc.Class,
-      //                 label: bc.Label,
-      //                 probRiscoAlto: parseFloat(bc.ProbaClass0).toFixed(2),
-      //                 probRiscoMedio: parseFloat(bc.ProbaClass1).toFixed(2),
-      //                 probRiscoBaixo: parseFloat(bc.ProbaClass2).toFixed(2),
-      //                 probSemRisco: parseFloat(bc.ProbaClass3).toFixed(2),
-      //             })
-      //         } else {
-      //             this.setState({ ...this.state, found: false })
-      //             this.clearDataState()
-      //         }
-      //     })
-      //     .catch((err) => console.log('Error in fecthSimulacaoRiscoFrustracao..', err))
-
-      this.setState(...this.state, {
-        found: true,
-        classe: 'oi',
-        label: 'testte',
-        probRiscoAlto: (49.0).toFixed(2),
-        probRiscoMedio: (20.5).toFixed(2),
-        probRiscoBaixo: (11.0).toFixed(2),
-        probSemRisco: (5.0).toFixed(2),
-      });
+      fecthSimulacaoRiscoFrustracao(
+        cliente,
+        usuario,
+        nome,
+        email,
+        celular,
+        apikey,
+        versao,
+        salario,
+        saldototal,
+        idadeatualanos * 12,
+        contribuicaomensal,
+        sendmail
+      )
+        .then((bc) => {
+          if (!!bc) {
+            //console.log(bc)
+            this.setState(...this.state, {
+              found: true,
+              classe: bc.Class,
+              label: bc.Label,
+              probRiscoAlto: parseFloat(bc.ProbaClass0).toFixed(2),
+              probRiscoMedio: parseFloat(bc.ProbaClass1).toFixed(2),
+              probRiscoBaixo: parseFloat(bc.ProbaClass2).toFixed(2),
+              probSemRisco: parseFloat(bc.ProbaClass3).toFixed(2),
+            });
+          } else {
+            this.setState({ ...this.state, found: false });
+            this.clearDataState();
+          }
+        })
+        .catch((err) =>
+          console.log('Error in fecthSimulacaoRiscoFrustracao..', err)
+        );
     }
   }
 
@@ -217,7 +278,9 @@ export default class Risco extends Component {
     // console.log(this.props)
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.loadInitialParams();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.salario !== this.state.salario) {
@@ -274,21 +337,21 @@ export default class Risco extends Component {
   getColorRiscoFrustracao(risco) {
     if (risco == 'SEM RISCO') {
       return 'greenyellow';
-    } else if (risco == 'RISCO BAIXO') {
+    } else if (risco == 'BAIXO RISCO') {
       return 'skyblue';
-    } else if (risco == 'RISCO MEDIO') {
+    } else if (risco == 'MEDIO RISCO') {
       return 'yellow';
-    } else if (risco == 'RISCO ALTO') {
+    } else if (risco == 'ALTO RISCO') {
       return 'red';
     }
   }
 
   getNomeRisco(risco) {
-    if (risco == 'RISCO BAIXO') {
+    if (risco == 'BAIXO RISCO') {
       return 'BAIXO';
-    } else if (risco == 'RISCO MEDIO') {
+    } else if (risco == 'MEDIO RISCO') {
       return 'MEDIO';
-    } else if (risco == 'RISCO ALTO') {
+    } else if (risco == 'ALTO RISCO') {
       return 'ALTO';
     } else return risco;
   }
@@ -520,7 +583,7 @@ export default class Risco extends Component {
                 onChange={this.handleCheck}
               />
               <label className='termos_label' htmlFor='checkbox_id'>
-                <a href='/simulador/prevsan/termo_prevsan.pdf' target='_blank'>
+                <a href='/simulador/riscofrustracao/termo.pdf' target='_blank'>
                   Li e concordo com o termo de uso
                 </a>
               </label>
@@ -531,42 +594,64 @@ export default class Risco extends Component {
             <div>
               <div className='items-group-wrapper'>
                 <h4>Resultado da Avaliação do Risco de Frustração</h4>
-                <div className='items-group'>
+                <div
+                  className='items-group'
+                  style={{ justifyContent: 'center' }}
+                >
                   <Tooltip text={`${getMsgToolTip(1)}`}>
-                    <ItemValue
-                      label='Nível do Risco'
+                    <ItemValueStyle
+                      label='Nível de Risco'
                       value={`${this.getNomeRisco(label)}`}
+                      color={`${this.getColorRiscoFrustracao(label)}`}
                     />
                   </Tooltip>
                 </div>
               </div>
+              <label className='termos_label'>
+                O Benefício[%] do Salário ESPERADO está dentro da faixa do Nível
+                de Risco ESTIMADO, de acordo com a faixa salarial informada!
+              </label>
 
-              <div className='charts-wrapper row mt-2'>
-                <div className='col-xs-12 col-sm-12 col-md-6 col-md-offset-3'>
-                  <PieChart
-                    height='55%'
-                    width='140px'
-                    title='Probabilidades dos Níveis de Risco'
-                    labels={[
-                      'Risco Alto',
-                      'Risco Médio',
-                      'Risco Baixo',
-                      'Sem Risco',
-                    ]}
-                    data={[
-                      this.state.probRiscoAlto,
-                      this.state.probRiscoMedio,
-                      this.state.probRiscoBaixo,
-                      this.state.probSemRisco,
-                    ]}
-                    color={getChartColors()}
-                    onClickChartIndex={(index) => {
-                      //console.log(index)
-                    }}
-                    onClickChartLabel={(index) => {
-                      // console.log(index)
-                    }}
-                  />
+              {!!this.state.data.rows && (
+                <div
+                  className='items-group'
+                  style={{ justifyContent: 'center' }}
+                >
+                  <div className='page page-beneficiariocontatosimulador page-table mt-3'>
+                    <div className='content-header-wrapper'>
+                      <List
+                        list={this.state.data.rows}
+                        labelRisco={label}
+                        salario={salario}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className='items-group-wrapper'>
+                <h4>Probabilidades por Nível de Risco</h4>
+                <div className='charts-wrapper row mt-2'>
+                  <div className='col-xs-12 col-sm-12 col-md-6 col-md-offset-3'>
+                    <PieChart
+                      height='55%'
+                      width='140px'
+                      title='Probabilidades'
+                      labels={['Alto', 'Médio', 'Baixo', 'Sem Risco']}
+                      data={[
+                        this.state.probRiscoAlto,
+                        this.state.probRiscoMedio,
+                        this.state.probRiscoBaixo,
+                        this.state.probSemRisco,
+                      ]}
+                      color={getChartColors()}
+                      onClickChartIndex={(index) => {
+                        //console.log(index)
+                      }}
+                      onClickChartLabel={(index) => {
+                        // console.log(index)
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
