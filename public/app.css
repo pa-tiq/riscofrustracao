@@ -21125,13 +21125,13 @@ body:not(.sidebar-collapse) .main-footer strong {
 .left-side,
 .main-header .logo,
 .main-sidebar {
-  width: 250px;
+  width: 200px;
 }
 .content-wrapper,
 .main-footer,
 .main-header .navbar,
 .right-side {
-  margin-left: 250px;
+  margin-left: 200px;
 }
 .main-header {
   height: 50px;
