@@ -5,7 +5,7 @@ import Grid from '../layout/grid';
 export default (props) => (
   <div
     className='item v2'
-    style={{ 'background-color': props.color, 'align-items': 'center' }}
+    style={{ backgroundColor: props.color, alignItems: 'center' }}
   >
     <h4>{props.value || '-'}</h4>
     <label>{props.label}</label>

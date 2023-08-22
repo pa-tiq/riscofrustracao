@@ -72,7 +72,7 @@ const PieChart = ({
   }, []);
 
   return (
-    <div style={{height: height, width:width}}>
+    <div style={{height: height, width:width, margin:'auto'}}>
       <canvas id='myPieChart' ref={chartRef}></canvas>
     </div>
   );

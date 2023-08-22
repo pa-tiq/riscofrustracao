@@ -366,23 +366,23 @@ export default class Risco extends Component {
   }
 
   getColorRiscoFrustracao(risco) {
-    if (risco == 'SEM RISCO') {
+    if (risco === 'SEM RISCO') {
       return 'greenyellow';
-    } else if (risco == 'BAIXO RISCO') {
+    } else if (risco === 'BAIXO RISCO') {
       return 'skyblue';
-    } else if (risco == 'MEDIO RISCO') {
+    } else if (risco === 'MEDIO RISCO') {
       return 'yellow';
-    } else if (risco == 'ALTO RISCO') {
+    } else if (risco === 'ALTO RISCO') {
       return 'red';
     }
   }
 
   getNomeRisco(risco) {
-    if (risco == 'BAIXO RISCO') {
+    if (risco === 'BAIXO RISCO') {
       return 'BAIXO';
-    } else if (risco == 'MEDIO RISCO') {
+    } else if (risco === 'MEDIO RISCO') {
       return 'MEDIO';
-    } else if (risco == 'ALTO RISCO') {
+    } else if (risco === 'ALTO RISCO') {
       return 'ALTO';
     } else return risco;
   }
@@ -630,7 +630,7 @@ export default class Risco extends Component {
                   style={{ justifyContent: 'center' }}
                 >
                   <Tooltip text={`${getMsgToolTip(1)}`}>
-                    <ItemValue
+                    <ItemValueStyle
                       label='Nível do Risco'
                       value={`${this.getNomeRisco(label)}`}
                       color={`${this.getColorRiscoFrustracao(label)}`}
@@ -662,10 +662,13 @@ export default class Risco extends Component {
               <div className='items-group-wrapper'>
                 <h4>Probabilidades por Nível de Risco</h4>
                 <div className='charts-wrapper row mt-2'>
-                  <div className='col-xs-12 col-sm-12 col-md-6 col-md-offset-3'>
+                  <div
+                    className='col-xs-12 col-sm-12 col-md-6 col-md-offset-3'
+                    style={{ alignContent: 'center' }}
+                  >
                     <PieChart
                       height='55%'
-                      width='140px'
+                      width='616px'
                       title='Probabilidades'
                       labels={[
                         'Risco Alto',

@@ -276,7 +276,7 @@ class FaixaRiscoList extends Component {
         <table
           id='dtBasicExample'
           className='table table-striped table-bordered'
-          cellspacing='0'
+          cellSpacing='0'
           width='100%'
         >
           <thead>
