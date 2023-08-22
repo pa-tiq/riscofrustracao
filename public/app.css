@@ -20789,23 +20789,23 @@ body.toastr-confirm-active {
   --color-gray: #eee;
   --color-black: #333;
 }
-#app > .wrapper[data-cliente='regius'] {
+.wrapper[data-cliente='regius'] {
   --color-primary: #9da348;
   --color-primary-shade: #6e7232;
   --color-primary-tint: #babf7f;
 }
-#app > .wrapper[data-cliente='eqt'] {
+.wrapper[data-cliente='eqt'] {
   --color-primary: #05659c;
   --color-primary-shade: #04476d;
   --color-primary-tint: #5093ba;
 }
-#app > .wrapper[data-cliente='sarah'] {
+.wrapper[data-cliente='sarah'] {
   --color-primary: #364188;
   --color-primary-shade: #f07d00;
   --color-primary-tint: #727aac;
 }
-#app > .wrapper[data-cliente='previsan'],
-#app > .wrapper[data-cliente='risco'] {
+.wrapper[data-cliente='previsan'],
+.wrapper[data-cliente='risco'] {
   --color-primary: #05659c;
   --color-primary-shade: #04476d;
   --color-primary-tint: #5093ba;
@@ -20863,18 +20863,17 @@ body {
 .right-side {
   background-color: #fff;
 }
-#app,
-#app > .wrapper {
+.wrapper {
   min-height: 100vh;
 }
-#app > .wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
 }
-#app > .wrapper .content-wrapper {
+.wrapper .content-wrapper {
   flex-grow: 1;
 }
-#app > .wrapper .main-footer {
+.wrapper .main-footer {
   position: unset;
   bottom: unset;
   text-align: center;
