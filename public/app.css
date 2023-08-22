@@ -15,6 +15,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -21153,7 +21154,7 @@ body:not(.sidebar-collapse) .main-footer strong {
 }
 .main-footer {
   position: unset;
-  bottom:unset;
+  bottom: unset;
   text-align: center;
   border-top-color: var(--color-gray);
 }

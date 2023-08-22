@@ -10,9 +10,15 @@ export const slice = createSlice({
       const newState = !state.menuWide;
       state.menuWide = newState;
     },
+    wideMenu: (state) => {
+      state.menuWide = true;
+    },    
+    narrowMenu: (state) => {
+      state.menuWide = false;
+    },
   },
 });
 
-export const { toggleMenu } = slice.actions;
+export const { toggleMenu, wideMenu, narrowMenu } = slice.actions;
 
 export default slice.reducer;

@@ -6,26 +6,28 @@ import Footer from './common/template/footer';
 //import Messages from './common/msg/messages';
 
 import { useCookies } from 'react-cookie';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const App = () => {
   const [cookie] = useCookies(['menuWideCookie']);
   const { menuWideCookie } = cookie;
 
-  useEffect(()=>{
-    document.getElementById('app_body').classList.toggle('sidebar-collapse');
-    console.log(document.getElementById('app_body'));
-  },[menuWideCookie]);
+  useLayoutEffect(() => {
+    if (menuWideCookie === 'false')
+      document.getElementById('app_body').classList.add('sidebar-collapse');
+    else
+      document.getElementById('app_body').classList.remove('sidebar-collapse');
+  }, [menuWideCookie]);
 
   return (
-      <div className='wrapper' data-cliente={'risco'}>
-        <Header />
-        <div className='content-wrapper'>
-          <Routes />
-        </div>
-        <Footer />
-        {/* <Messages /> */}
+    <div className='wrapper' data-cliente={'risco'}>
+      <Header />
+      <div className='content-wrapper'>
+        <Routes />
       </div>
+      <Footer />
+      {/* <Messages /> */}
+    </div>
   );
 };
 

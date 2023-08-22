@@ -2,8 +2,9 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import MenuItem from './menuItem';
 import Logo from './logo';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMenu } from '../../redux/menuWideSlice';
+import { toggleMenu, wideMenu, narrowMenu } from '../../redux/menuWideSlice';
 import { useCookies } from 'react-cookie';
+import './menu.css';
 
 // Constant to define the position of menu, in accord with id of table menu in database
 
@@ -30,13 +31,13 @@ const Menu = () => {
     setCookie('menuWideCookie', menuWide, { path: '/', sameSite: 'lax' });
   }, [menuWide]);
 
-  let firstTime = true;
-  useLayoutEffect(() => {
-    if (menuWide && `${menuWide}` !== menuWideCookie && firstTime) {
-      dispatch(toggleMenu());
+
+  useEffect(() => {
+    if (menuWide && `${menuWide}` !== menuWideCookie) {
+      if(menuWideCookie === 'true') dispatch(wideMenu());
+      else dispatch(narrowMenu());
     }
-    firstTime = false;
-  }, [menuWideCookie]);
+  }, []);
 
   return (
     <div>
@@ -53,17 +54,20 @@ const Menu = () => {
         <MenuItem path='/sobre' label='Sobre' icon='address-card' />
       </ul>
 
-      <ul className='sidebar-menu'>
-        <li
+      <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+        <button
+          id='sidebarToggle'
+          className={
+            menuWide
+              ? 'buttonSidebarCollapse wide'
+              : 'buttonSidebarCollapse'
+          }
+          type='button'
           onClick={() => {
             dispatch(toggleMenu());
           }}
-        >
-          <a className='navbar navbar-static-top'>
-            <i className={`fa fa-caret-square-o-right`}></i>
-          </a>
-        </li>
-      </ul>
+        ></button>
+      </div>
 
       <div className='logo'>
         <img src={require('../../assets/imgs/wedan_vertical.png')} />
