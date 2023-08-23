@@ -666,7 +666,12 @@ export default class Risco extends Component {
                     height='55%'
                     width='616px'
                     title='Probabilidades'
-                    labels={['Alto', 'Médio', 'Baixo', 'Sem Risco']}
+                    labels={[
+                      'Risco Alto',
+                      'Risco Médio',
+                      'Risco Baixo',
+                      'Sem Risco',
+                    ]}
                     data={[
                       this.state.probRiscoAlto,
                       this.state.probRiscoMedio,
