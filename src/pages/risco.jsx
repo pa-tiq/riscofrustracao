@@ -662,28 +662,18 @@ export default class Risco extends Component {
               <div className='items-group-wrapper'>
                 <h4>Probabilidades por Nível de Risco</h4>
                 <div className='charts-wrapper row mt-2'>
-                  <div
-                    className='col-xs-12 col-sm-12 col-md-6 col-md-offset-3'
-                    style={{ alignContent: 'center' }}
-                  >
-                    <PieChart
-                      height='55%'
-                      width='616px'
-                      title='Probabilidades'
-                      labels={[
-                        'Risco Alto',
-                        'Risco Médio',
-                        'Risco Baixo',
-                        'Sem Risco',
-                      ]}
-                      data={[
-                        this.state.probRiscoAlto,
-                        this.state.probRiscoMedio,
-                        this.state.probRiscoBaixo,
-                        this.state.probSemRisco,
-                      ]}
-                    />
-                  </div>
+                  <PieChart
+                    height='55%'
+                    width='616px'
+                    title='Probabilidades'
+                    labels={['Alto', 'Médio', 'Baixo', 'Sem Risco']}
+                    data={[
+                      this.state.probRiscoAlto,
+                      this.state.probRiscoMedio,
+                      this.state.probRiscoBaixo,
+                      this.state.probSemRisco,
+                    ]}
+                  />
                 </div>
               </div>
             </div>
@@ -695,7 +685,7 @@ export default class Risco extends Component {
                 <strong>AVISO LEGAL</strong>
               </h4>
               <h4>
-                O Risco é determinado utilizando um modelo de inteligencia
+                O Risco é determinado utilizando um modelo de inteligência
                 artificial. Ou seja, NÃO são considerados os modelos atuariais
                 para determinar esse nível de risco.
               </h4>

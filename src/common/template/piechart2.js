@@ -1,21 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  ArcElement,
-  Chart,
-  PieController,
-  Legend,
-  Tooltip,
-} from 'chart.js';
+import { ArcElement, Chart, PieController, Legend, Tooltip } from 'chart.js';
 
-const PieChart = ({
-  height,
-  width,
-  title,
-  labels,
-  data,
-}) => {
+const PieChart = ({ height, width, title, labels, data }) => {
   const chartRef = useRef(null);
   const [pieChart, setPieChart] = useState(null);
+
+  const alwaysShowTooltip = {
+    id: 'alwaysShowTooltip',
+    afterDraw(chart, args, options) {
+      const { ctx } = chart;
+      ctx.save();
+      chart.data.datasets.forEach((dataset, i) => {
+        chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+          if (chart.data.datasets[i].data[index] !== '0.00') {
+            const { x, y } = datapoint.tooltipPosition();
+            const text =
+              chart.data.labels[index] +
+              ': ' +
+              chart.data.datasets[i].data[index];
+            const textWidth = ctx.measureText(text).width;
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(x - ((textWidth + 10) / 2), y - 25, textWidth + 10, 20);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x - 5, y - 5);
+            ctx.lineTo(x + 5, y - 5);
+            ctx.fill();
+            ctx.restore();
+            ctx.font = '13px Arial';
+            ctx.fillStyle = 'white';
+            ctx.fillText(text, x - textWidth / 2, y - 14);
+            ctx.restore();
+          }
+        });
+      });
+    },
+  };
 
   const createChart = (chartContext, labels, data, title) => {
     const myPieChart = new Chart(chartContext, {
@@ -34,27 +54,17 @@ const PieChart = ({
       },
       options: {
         maintainAspectRatio: false,
-        tooltips: {
-          backgroundColor: 'rgb(255,255,255)',
-          bodyFontColor: '#858796',
-          borderColor: '#dddfeb',
-          borderWidth: 1,
-          xPadding: 15,
-          yPadding: 15,
-          displayColors: false,
-          caretPadding: 10,
-        },
         legend: {
           display: false,
         },
         cutoutPercentage: 80,
-      },
-      plugins: {
-        title: {
-          display: true,
-          text: title,
+        plugins: {
+          tooltip: {
+            enabled: false,
+          },
         },
       },
+      plugins: [alwaysShowTooltip],
     });
     setPieChart(myPieChart);
   };
@@ -63,7 +73,7 @@ const PieChart = ({
     if (chartRef) {
       const myPieChart = chartRef.current.getContext('2d');
       let chartToDestroy = Chart.getChart('myPieChart');
-      if (chartToDestroy){
+      if (chartToDestroy) {
         chartToDestroy.destroy();
       }
       Chart.register(PieController, ArcElement, Legend, Tooltip);
@@ -72,7 +82,7 @@ const PieChart = ({
   }, []);
 
   return (
-    <div style={{height: height, width:width, margin:'auto'}}>
+    <div style={{ height: height, width: width, margin: 'auto' }}>
       <canvas id='myPieChart' ref={chartRef}></canvas>
     </div>
   );
