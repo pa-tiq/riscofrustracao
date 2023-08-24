@@ -13,7 +13,7 @@
   margin-right: 1rem;
   margin-left: 1rem;
   font-family: 'Font Awesome 5 Free';
-  padding-top: 0.35rem;
+  padding-top: 0.15rem;
 }
 .buttonSidebarCollapse:hover {
   transition: 0.4s ease-in-out;
