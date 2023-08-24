@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect } from 'react';
 import MenuItem from './menuItem';
 import Logo from './logo';
 import { useDispatch, useSelector } from 'react-redux';

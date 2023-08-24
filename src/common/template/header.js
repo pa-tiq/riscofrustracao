@@ -1,4 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMenu, wideMenu, narrowMenu } from '../../redux/menuWideSlice';
+import './header.css'
+
 const Header = () => {
+
+  const menuWide = useSelector((state) => state.menu.menuWide);
+  const dispatch = useDispatch();
+
   return (
     <header className='main-header'>
       <a href='/#/' className='logo'>
@@ -9,8 +17,20 @@ const Header = () => {
           <b> S</b>imulador
         </span>
       </a>
+
       <nav className='navbar navbar-static-top'>
-        {/* <a href='#0' className='sidebar-toggle' data-toggle='offcanvas'></a> */}
+        <div>
+          <button
+            id='headerSidebarToggle'
+            className={
+              menuWide ? 'buttonHeaderSidebarCollapse show' : 'buttonHeaderSidebarCollapse'
+            }
+            type='button'
+            onClick={() => {
+              dispatch(toggleMenu());
+            }}
+          ></button>
+        </div>
       </nav>
     </header>
   );
