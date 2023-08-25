@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMenu, wideMenu, narrowMenu } from '../../redux/menuWideSlice';
+import { toggleMobileMenu } from '../../redux/menuWideSlice';
 import './header.css'
 
 const Header = () => {
 
-  const menuWide = useSelector((state) => state.menu.menuWide);
+  const showMobileMenu = useSelector((state) => state.menu.showMobileMenu);
   const dispatch = useDispatch();
 
   return (
@@ -19,15 +19,16 @@ const Header = () => {
       </a>
 
       <nav className='navbar navbar-static-top'>
-        <div>
+        <div className='buttonMobileSidebarContainer'>
           <button
-            id='headerSidebarToggle'
             className={
-              menuWide ? 'buttonHeaderSidebarCollapse show' : 'buttonHeaderSidebarCollapse'
+              showMobileMenu
+                ? 'buttonMobileSidebar show'
+                : 'buttonMobileSidebar'
             }
             type='button'
             onClick={() => {
-              dispatch(toggleMenu());
+              dispatch(toggleMobileMenu());
             }}
           ></button>
         </div>

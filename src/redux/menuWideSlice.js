@@ -4,6 +4,7 @@ export const slice = createSlice({
   name: 'menuWide',
   initialState: {
     menuWide: true,
+    showMobileMenu:false,
   },
   reducers: {
     toggleMenu: (state) => {
@@ -16,9 +17,13 @@ export const slice = createSlice({
     narrowMenu: (state) => {
       state.menuWide = false;
     },
+    toggleMobileMenu: (state) => {
+      const newState = !state.showMobileMenu;
+      state.showMobileMenu = newState;
+    }
   },
 });
 
-export const { toggleMenu, wideMenu, narrowMenu } = slice.actions;
+export const { toggleMenu, wideMenu, narrowMenu, toggleMobileMenu } = slice.actions;
 
 export default slice.reducer;

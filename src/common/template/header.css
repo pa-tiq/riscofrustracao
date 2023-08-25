@@ -1,5 +1,9 @@
-.buttonHeaderSidebarCollapse {
-  background-color: rgba(82, 79, 79, 0.4);
+.buttonMobileSidebarContainer{
+  margin-left: 0.5rem;
+}
+
+.buttonMobileSidebar {
+  background-color: transparent;
   transition: 0.4s ease-in-out;
   color: white;
   border-radius: 50%;
@@ -8,34 +12,32 @@
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
-  margin-top: 1.25rem;
-  padding-right: 1rem;
+  margin-left: -1rem;
+  padding-right: 0.5rem;
   font-family: 'Font Awesome 5 Free';
-}
-.buttonHeaderSidebarCollapse:hover {
-  transition: 0.4s ease-in-out;
-  background-color: rgba(255, 255, 255, 0.25);
+  width: 5rem;
+  height: 5rem;
 }
 
-.buttonHeaderSidebarCollapse::after {
+/* .buttonMobileSidebar:hover {
+  transition: 0.4s ease-in-out;
+  color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+} */
+
+.buttonMobileSidebar::after {
   content: '\F0C9';
   padding-left: 0.1rem;
-}
-#headerSidebarToggle {
-  width: 2.5rem;
-  height: 2.5rem;
-  text-align: center;
-  cursor: pointer;
-}
-#headerSidebarToggle::after {
   font-weight: 900;
+  font-size: larger;
 }
-#headerSidebarToggle:hover {
-  text-decoration: none;
+
+@media (min-width: 768px) {
+  #idButtonMobileSidebar{
+    display: none;
+  }
 }
-#headerSidebarToggle:focus {
-  outline: none;
-}
+
 .show::after {
   content: '\F0C9';
 }
