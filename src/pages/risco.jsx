@@ -648,7 +648,14 @@ export default class Risco extends Component {
                   className='items-group'
                   style={{ justifyContent: 'center' }}
                 >
-                  <div className='page page-beneficiariocontatosimulador page-table mt-3'>
+                  <div
+                    className='page page-beneficiariocontatosimulador page-table mt-3'
+                    style={{
+                      overflowX: 'scroll',
+                      whiteSpace: 'nowrap',
+                      width: '100%',
+                    }}
+                  >
                     <div className='content-header-wrapper'>
                       <List
                         list={this.state.data.rows}
@@ -664,7 +671,7 @@ export default class Risco extends Component {
                 <div className='charts-wrapper row mt-2'>
                   <PieChart
                     height='55%'
-                    width='616px'
+                    width='100%'
                     title='Probabilidades'
                     labels={[
                       'Risco Alto',

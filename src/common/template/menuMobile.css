@@ -1,68 +1,81 @@
-.mobileSidebarContainer{
-    position: fixed; 
-    width: 30%;
-    background-color: #05659c;
-    top:0;
-    left:0;
-    height: 100%;
-    z-index: 1;
-    display: block;
+.mobileSidebarContainer {
+  position: fixed;
+  width: 30%;
+  background-color: #05659c;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+  display: block;
 }
 
-.transformMobileSidebar{
-    -webkit-transition: all 0.2s ease;  
-    -moz-transition: all 0.2s ease;  
-    -o-transition: all 0.2s ease;  
-    -ms-transition: all 0.2s ease;  
-    transition: all 0.2s ease;
-}
-
-.hideMobileSidebar{
-    width: 0%;
+.transformMobileSidebar,
+.transformMobileSidebar .sidebar .logoMobile img,
+.transformMobileSidebar .sidebar-menu li a {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 @media (min-width: 768px) {
-    .mobileSidebarContainer {
-      display: none;
-    }
+  .mobileSidebarContainer {
+    display: none;
+  }
 }
 
-.mobileSidebarContainer .sidebar-menu{
-    padding-top: 60px;
+.mobileSidebarContainer .sidebar-menu {
+  padding-top: 60px;
 }
 
-.mobileSidebarContainer .sidebar-menu li a{
-    font-weight: 600;
-    font-size: 12px;
-    padding: 0;
-    padding-left: 10px;
-    color: #fff;
-    border-left: 5px solid transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
+.mobileSidebarContainer .sidebar-menu li a {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0;
+  padding-left: 10px;
+  color: #fff;
+  border-left: 5px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
 }
 
-.mobileSidebarContainer .sidebar-menu li{
-    transition: 0.4s ease-in-out;
-    display: flex;
+.mobileSidebarContainer .sidebar-menu li {
+  transition: 0.4s ease-in-out;
+  display: flex;
 }
 
-.mobileSidebarContainer .sidebar-menu li:hover{
-    transition: 0.4s ease-in-out;
-    background: #04476d;
+.mobileSidebarContainer .sidebar-menu li:hover {
+  transition: 0.4s ease-in-out;
+  background: #04476d;
 }
 
-.mobileSidebarContainer .sidebar .logo{
-    position: absolute;
-    bottom:2rem;
-    text-align: center;
-    width: 100%;
+.mobileSidebarContainer .sidebar {
+  position: relative;
+  height: 100%;
 }
 
-.mobileSidebarContainer .sidebar .logo img{
-   width: 75px;
+.mobileSidebarContainer .sidebar .logoMobile {
+  position: absolute;
+  bottom: 2rem;
+  text-align: center;
+  width: 100%;
 }
 
+.mobileSidebarContainer .sidebar .logoMobile img {
+  width: 75px;
+}
 
+.hideMobileSidebar {
+  width: 0%;
+}
+
+.hideMobileSidebar .sidebar .logoMobile img {
+  opacity: 0%;
+}
+
+.hideMobileSidebar .sidebar-menu li a {
+    opacity: 0%;
+  }

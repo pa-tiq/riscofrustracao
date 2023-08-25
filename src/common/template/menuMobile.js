@@ -60,7 +60,7 @@ const MenuMobile = () => {
               }}
             />
           </ul>
-          <div className='logo'>
+          <div className='logoMobile'>
             <img src={require('../../assets/imgs/wedan_vertical.png')} />
           </div>
         </div>
