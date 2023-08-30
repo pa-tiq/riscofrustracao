@@ -15,7 +15,7 @@ import PieChart from '../common/template/piechart2';
 //import BarChart from '../common/template/barchart'
 //import LineChart from '../common/template/linechart';
 
-import SliderOne from '../common/template/sliderOne';
+import SliderTwo from '../common/template/sliderTwo';
 import Tooltip from '../common/template/tooltip';
 
 import {
@@ -505,95 +505,71 @@ export default class Risco extends Component {
             <h4>Variáveis para Simulação</h4>
 
             <div className='items-group'>
-              {true && (
-                <SliderOne
-                  label={'Contribuição Participante R$'}
-                  min={this.state.contribuicaomensalmin}
-                  max={this.state.contribuicaomensalmax}
-                  step={50}
-                  width={200}
-                  div={1}
-                  showvalue={true}
-                  showminmax={false}
-                  defaultValue={200}
-                  value={parseFloat(this.state.contribuicaomensal).toFixed(2)}
-                  onChange={(value) => {
-                    // console.log(value)
-                  }}
-                  onAfterChange={(value) => {
-                    //console.log(value)
-                    this.setState({
-                      ...this.state,
-                      contribuicaomensal: +value,
-                    });
-                  }}
-                />
-              )}
+              <SliderTwo
+                label={'Contribuição Participante R$'}
+                min={this.state.contribuicaomensalmin}
+                max={this.state.contribuicaomensalmax}
+                step={50}
+                width={200}
+                showvalue={true}
+                showminmax={false}
+                defaultValue={200}
+                value={parseFloat(this.state.contribuicaomensal).toFixed(2)}
+                onChange={(value) => {
+                  //console.log(value)
+                  this.setState({
+                    ...this.state,
+                    contribuicaomensal: +value,
+                  });
+                }}
+              />
 
-              {true && (
-                <SliderOne
-                  label={'Idade Atual (anos)'}
-                  min={this.state.idadeatualanosmin}
-                  max={this.state.idadeatualanosmax}
-                  step={1}
-                  width={200}
-                  div={1}
-                  showvalue={true}
-                  showminmax={false}
-                  defaultValue={40}
-                  value={this.state.idadeatualanos}
-                  onChange={(value) => {
-                    // console.log(value)
-                  }}
-                  onAfterChange={(value) => {
-                    this.setState({ ...this.state, idadeatualanos: +value });
-                  }}
-                />
-              )}
+              <SliderTwo
+                label={'Idade Atual (anos)'}
+                min={this.state.idadeatualanosmin}
+                max={this.state.idadeatualanosmax}
+                step={1}
+                width={200}
+                showvalue={true}
+                showminmax={false}
+                defaultValue={40}
+                value={this.state.idadeatualanos}
+                onChange={(value) => {
+                  this.setState({ ...this.state, idadeatualanos: +value });
+                }}
+              />
 
-              {true && (
-                <SliderOne
-                  label={'Saldo Total R$'}
-                  min={this.state.saldototalmin}
-                  max={this.state.saldototalmax}
-                  step={5000}
-                  width={200}
-                  div={1}
-                  showvalue={true}
-                  showminmax={false}
-                  defaultValue={50000} //{new Array(10, 100)}
-                  value={this.state.saldototal}
-                  onChange={(value) => {
-                    // console.log(value)
-                  }}
-                  onAfterChange={(value) => {
-                    // console.log(value/10)
-                    this.setState({ ...this.state, saldototal: +value });
-                  }}
-                />
-              )}
+              <SliderTwo
+                label={'Saldo Total R$'}
+                min={this.state.saldototalmin}
+                max={this.state.saldototalmax}
+                step={5000}
+                width={200}
+                showvalue={true}
+                showminmax={false}
+                defaultValue={50000} //{new Array(10, 100)}
+                value={parseFloat(this.state.saldototal).toFixed(2)}
+                onChange={(value) => {
+                  // console.log(value/10)
+                  this.setState({ ...this.state, saldototal: +value });
+                }}
+              />
 
-              {true && (
-                <SliderOne
-                  label={'Salário Mensal R$'}
-                  min={this.state.salariomin}
-                  max={this.state.salariomax}
-                  step={500}
-                  width={200}
-                  div={1}
-                  showvalue={true}
-                  showminmax={false}
-                  defaultValue={5000}
-                  value={this.state.salario}
-                  onChange={(value) => {
-                    // console.log(value)
-                  }}
-                  onAfterChange={(value) => {
-                    // console.log(value)
-                    this.setState({ ...this.state, salario: +value });
-                  }}
-                />
-              )}
+              <SliderTwo
+                label={'Salário Mensal R$'}
+                min={this.state.salariomin}
+                max={this.state.salariomax}
+                step={500}
+                width={200}
+                showvalue={true}
+                showminmax={false}
+                defaultValue={5000}
+                value={parseFloat(this.state.salario).toFixed(2)}
+                onChange={(value) => {
+                  // console.log(value)
+                  this.setState({ ...this.state, salario: +value });
+                }}
+              />
             </div>
           </div>
 
@@ -691,18 +667,16 @@ export default class Risco extends Component {
             </div>
           )}
 
-          {true && (
-            <div className='message-renda-disclaimer'>
-              <h4>
-                <strong>AVISO LEGAL</strong>
-              </h4>
-              <h4>
-                O Risco é determinado utilizando um modelo de inteligência
-                artificial. Ou seja, NÃO são considerados os modelos atuariais
-                para determinar esse nível de risco.
-              </h4>
-            </div>
-          )}
+          <div className='message-renda-disclaimer'>
+            <h4>
+              <strong>AVISO LEGAL</strong>
+            </h4>
+            <h4>
+              O Risco é determinado utilizando um modelo de inteligência
+              artificial. Ou seja, NÃO são considerados os modelos atuariais
+              para determinar esse nível de risco.
+            </h4>
+          </div>
         </Content>
       </div>
     );

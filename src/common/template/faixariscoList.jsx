@@ -272,7 +272,10 @@ class FaixaRiscoList extends Component {
 
   render() {
     return (
-      <div className='list-beneficiario table-responsive'>
+      <div
+        className='list-beneficiario table-responsive'
+        style={{ margin: 'auto' }}
+      >
         <table
           id='dtBasicExample'
           className='table table-striped table-bordered'
