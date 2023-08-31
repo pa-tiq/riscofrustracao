@@ -313,18 +313,22 @@ export default class Risco extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.salario !== this.state.salario) {
-      this.clearDataState();
-      this.simulate();
-    } else if (prevState.saldototal !== this.state.saldototal) {
-      this.clearDataState();
-      this.simulate();
-    } else if (prevState.idadeatualanos !== this.state.idadeatualanos) {
-      this.clearDataState();
-      this.simulate();
-    } else if (prevState.contribuicaomensal !== this.state.contribuicaomensal) {
-      this.clearDataState();
-      this.simulate();
+    if (this.state.checked) {
+      if (prevState.salario !== this.state.salario) {
+        this.clearDataState();
+        this.simulate();
+      } else if (prevState.saldototal !== this.state.saldototal) {
+        this.clearDataState();
+        this.simulate();
+      } else if (prevState.idadeatualanos !== this.state.idadeatualanos) {
+        this.clearDataState();
+        this.simulate();
+      } else if (
+        prevState.contribuicaomensal !== this.state.contribuicaomensal
+      ) {
+        this.clearDataState();
+        this.simulate();
+      }
     }
   }
 
@@ -627,7 +631,6 @@ export default class Risco extends Component {
                   <div
                     className='page page-beneficiariocontatosimulador page-table mt-3'
                     style={{
-                      overflowX: 'scroll',
                       whiteSpace: 'nowrap',
                       width: '100%',
                     }}

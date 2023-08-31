@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 const SliderTwo = (props) => {
   const [userValue, setUserValue] = useState(props.defaultValue);
   const [inputValue, setInputValue] = useState(null);
+  const [sliderValue, setSliderValue] = useState(null);
 
   const { value: propvalue } = props;
 
@@ -15,15 +16,18 @@ const SliderTwo = (props) => {
   }, [propvalue]);
 
   useEffect(() => {
-    if(inputValue){
-      const timeOutId = setTimeout(parseInputChange, 1000);
-      return () => clearTimeout(timeOutId);
+    if (inputValue) {
+      const timeOutInputId = setTimeout(parseInputChange, 1000);
+      return () => clearTimeout(timeOutInputId);
     }
   }, [inputValue]);
 
-  const handleSliderChange = (value) => {
-    return props.onChange(value);
-  };
+  useEffect(() => {
+    if (sliderValue) {
+      const timeOutSliderId = setTimeout(parseSliderChange, 600);
+      return () => clearTimeout(timeOutSliderId);
+    }
+  }, [sliderValue]);
 
   const parseInputChange = () => {
     try {
@@ -41,22 +45,31 @@ const SliderTwo = (props) => {
     }
   };
 
+  const parseSliderChange = () => {
+    props.onChange(sliderValue);
+    setSliderValue(null);
+  }
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
   };
 
   return (
     <div className='item v2 slider'>
       <input
         type='text'
-        value={inputValue === null ? userValue : inputValue}
+        value={inputValue === null ? (sliderValue === null ? userValue : sliderValue) : inputValue}
         onChange={handleInputChange}
       />
       <Slider
         min={props.min}
         max={props.max}
         defaultValue={props.defaultValue}
-        value={userValue}
+        value={sliderValue === null ? userValue : sliderValue}
         step={props.step}
         onChange={handleSliderChange}
       />
