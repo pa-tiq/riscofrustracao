@@ -69,7 +69,7 @@ const Menu = () => {
         ></button>
       </div>
 
-      <div className='logo'>
+      <div className='logo logo-bottom'>
         <img src={require('../../assets/imgs/wedan_vertical.png')} />
       </div>
     </div>

@@ -43,3 +43,9 @@
   content: '\f104';
   padding-right: 0.25rem;
 }
+.logo-bottom{
+  position: absolute;
+  bottom: 2rem;
+  text-align: center;
+  width: 100%;
+}
