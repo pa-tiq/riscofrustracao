@@ -61,8 +61,15 @@ const SliderTwo = (props) => {
   return (
     <div className='item v2 slider'>
       <input
+        className='form-control'
         type='text'
-        value={inputValue === null ? (sliderValue === null ? userValue : sliderValue) : inputValue}
+        value={
+          inputValue === null
+            ? sliderValue === null
+              ? userValue
+              : sliderValue
+            : inputValue
+        }
         onChange={handleInputChange}
       />
       <Slider
