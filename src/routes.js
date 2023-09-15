@@ -28,7 +28,7 @@ const Routes = () => (
         path='/'
         element={
           <Page>
-            <Sobre />
+            <Risco />
           </Page>
         }
       />
